@@ -6,6 +6,7 @@ function on_before($params)
 {
   $sag = new Sag('bigbluehat.ic.tl', '5984');
   $sag->setDatabase('phlattr');
+  $params['sag'] = $sag;
 
   if (empty($_SESSION['flattr_username']))
   {
@@ -18,6 +19,8 @@ function on_before($params)
 
 function on_get($params)
 {
+  $sag = $params['sag'];
+
   $vars = array(
     'profile' => $params['client']->getParsed('/user'),
     'things'  => $params['client']->getParsed('/user/things'),
