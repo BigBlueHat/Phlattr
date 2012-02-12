@@ -4,6 +4,9 @@ require_once __DIR__ . '/../sag/Sag.php';
 
 function on_before($params)
 {
+  $sag = new Sag('bigbluehat.ic.tl', '5984');
+  $sag->setDatabase('phlattr');
+
   if (empty($_SESSION['flattr_username']))
   {
     flash('You are not authenticated, please connect with flattr.','alert');
@@ -21,10 +24,16 @@ function on_get($params)
     'title'   => 'signed in!',
   );
 
-  $sag = new Sag('bigbluehat.ic.tl', '5984');
-  $sag->setDatabase('phlattr');
-  print_r($sag->get($_SESSION['flattr_username']));
+  try {
   // get list of existing registered phones and display them
+    print_r($sag->get($_SESSION['flattr_username']));
+  } catch(SagCouchException $e) {
+    // The requested post doesn't exist - oh no!
+    if($e->getCode() == "404") {
+      $e = new Exception("That post doesn't exist.");
+    }
+    throw $e;
+  }
   // if it 404's, create it so we'll have it later
   return template(basename(__FILE__),$vars);
 }
