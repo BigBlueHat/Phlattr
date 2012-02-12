@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../bootstrap.php';
-require __DIR__ . '/../lib/sag/Sag.php';
+require_once __DIR__ . '/../sag/Sag.php';
 
 function on_before($params)
 {

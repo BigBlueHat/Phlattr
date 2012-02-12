@@ -16,6 +16,7 @@
 require_once('SagException.php');
 require_once('SagCouchException.php');
 require_once('SagConfigurationCheck.php');
+require_once('httpAdapters/SagHTTPAdapter.php');
 require_once('httpAdapters/SagNativeHTTPAdapter.php');
 require_once('httpAdapters/SagCURLHTTPAdapter.php');
 
