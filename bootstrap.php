@@ -2,7 +2,7 @@
 define('PROJECT_PATH', dirname(__FILE__));
 require PROJECT_PATH . '/coltrane/coltrane.php';
 
-// require oauth2client, httpconnection, httpresponse and configbase
+// require oauth2client, httpconnection, FlattrHttpResponse and configbase
 require_libs(__DIR__.'/../lib');
 // include the api config
 require __DIR__.'/../config.php';

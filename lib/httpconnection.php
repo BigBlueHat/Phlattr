@@ -59,7 +59,7 @@ class HttpConnection {
             $resourceUrl .= (strpos($responseUrl,'?') === false) ? '?' .$opts['params'] : '&'.$opts['params'];
         }
 
-        $response = new HttpResponse();
+        $response = new FlattrHttpResponse();
         $ch = curl_init();
         $h = $this->mergeHeaders($opts['headers']);
 
@@ -94,7 +94,7 @@ class HttpConnection {
     {
         $opts = $this->parseOptions($opts);
 
-        $response = new HttpResponse();
+        $response = new FlattrHttpResponse();
         $ch = curl_init();
         $h = $this->mergeHeaders($opts['headers']);
         $merged_curlOptions = array(

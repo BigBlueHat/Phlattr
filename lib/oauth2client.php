@@ -109,7 +109,7 @@ class OAuth2Client
      * perform a GET api call
      *
      * @param string $path
-     * @return HttpResponse
+     * @return FlattrHttpResponse
      */
     public function get($path)
     {
@@ -152,7 +152,7 @@ class OAuth2Client
      *
      * @param string $path
      * @param array $postarray
-     * @return HttpResponse
+     * @return FlattrHttpResponse
      */
     public function post($path, $postarray)
     {
@@ -207,7 +207,7 @@ class OAuth2Client
      * @todo something to parse yaml, xml, m.m ?
      * parses a response and returns an array if successfull
      *
-     * @param HttpResponse $response
+     * @param FlattrHttpResponse $response
      * @return mixed array or string $response->body
      */
     public static function parseResponse($response)
@@ -236,7 +236,7 @@ class OAuth2Client
     /**
      * log a response
      *
-     * @param HttpResponse
+     * @param FlattrHttpResponse
      * @return void
      */
     protected function logResponse($response)

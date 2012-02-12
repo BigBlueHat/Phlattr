@@ -1,5 +1,5 @@
 <?php
-class HttpResponse
+class FlattrHttpResponse
 {
     public $body, $responseCode = null;
     public $errors = array();
