@@ -19,8 +19,10 @@ this is an authenticated page.
   <?php else: ?>
   <p>You've connected these phone numbers:</p>
   <ul>
-  <?php foreach($p['phones'] as $phone): ?>
-    <li><?= h($phone); ?></li>
+  <?php foreach($p['phones'] as $phone => $info): ?>
+    <li<?php echo $info->confirmed == false ? ' class="unconfirmed"' : ''; ?>>
+      <?= h($phone); ?><?php echo $info->confirmed == false ? ' (pending confirmation)' : ''; ?>
+    </li>
   <?php endforeach; ?>
   </ul>
   <?php endif; ?>

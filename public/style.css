@@ -10,3 +10,7 @@ body {
 .notice {
   border: 2px solid blue;
 }
+
+.unconfirmed {
+  color: #777;
+}

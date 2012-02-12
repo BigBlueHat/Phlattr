@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../bootstrap.php';
 require_once __DIR__ . '/../sag/Sag.php';
+$tropo_token = require_once __DIR__ . '/../tropo_token.php';
 
 function on_before($params)
 {
@@ -28,8 +29,8 @@ function on_get($params)
     // if it 404's, create it so we'll have it later
     if($e->getCode() == "404") {
       $doc = array('_id' => $_SESSION['flattr_username'],
-                   'phones' => $phones = array());
-      $sag->put($doc);
+                   'phones' => $phones = (object) array());
+      $sag->put($_SESSION['flattr_username'], $doc);
     }
   }
 
@@ -45,14 +46,17 @@ function on_get($params)
 
 function on_post($params) {
   $sag = $params['sag'];
+
   // get the list of phones
   $doc = $sag->get($_SESSION['flattr_username'])->body;
   // add the new submitted phone to the list
-  array_push($doc->phones, $params['phone']);
-  // TODO: add Tropo real phone check
+  $doc->phones->$params['phone'] =  array('confirmed' => false);
   // save the updated doc
-  $sag->put($doc->_id, $doc);
+  if ($sag->put($doc->_id, $doc)->body->ok) {
+    // have Tropo verify the phone is real; see phlattr_tropo_endpoint.php
+    file_get_contents("http://api.tropo.com/1.0/sessions?action=create&token={$tropo_token}&u={$_SESSION['flattr_username']}&p={$params['phone']}");
+  }
   // load the GET resource
-  return on_get($params);
+  redirect('authenticated.php');
 }
 run(basename(__FILE__),'.php');
