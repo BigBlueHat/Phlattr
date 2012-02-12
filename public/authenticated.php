@@ -21,23 +21,25 @@ function on_get($params)
 {
   $sag = $params['sag'];
 
+  try {
+    // get list of existing registered phones and display them
+    $phones = $sag->get($_SESSION['flattr_username'])->body->phones;
+  } catch(SagCouchException $e) {
+    // if it 404's, create it so we'll have it later
+    if($e->getCode() == "404") {
+      $doc = array('_id' => $_SESSION['flattr_username'],
+                   'phones' => $phones = array());
+      $sag->put($doc);
+    }
+  }
+
   $vars = array(
     'profile' => $params['client']->getParsed('/user'),
     'things'  => $params['client']->getParsed('/user/things'),
     'title'   => 'signed in!',
+    'phones'  => $phones
   );
 
-  try {
-  // get list of existing registered phones and display them
-    print_r($sag->get($_SESSION['flattr_username']));
-  } catch(SagCouchException $e) {
-    // The requested post doesn't exist - oh no!
-    if($e->getCode() == "404") {
-      $e = new Exception("That post doesn't exist.");
-    }
-    throw $e;
-  }
-  // if it 404's, create it so we'll have it later
   return template(basename(__FILE__),$vars);
 }
 
