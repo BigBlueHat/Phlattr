@@ -44,10 +44,15 @@ function on_get($params)
 }
 
 function on_post($params) {
+  $sag = $params['sag'];
   // get the list of phones
+  $doc = $sag->get($_SESSION['flattr_username'])->body;
   // add the new submitted phone to the list
+  array_push($doc->phones, $params['phone']);
+  // TODO: add Tropo real phone check
+  // save the updated doc
+  $sag->put($doc->_id, $doc);
   // load the GET resource
-  $json = array('user' => $_SESSION['flattr_username'],
-                'phones' => array());
+  return on_get($params);
 }
 run(basename(__FILE__),'.php');
