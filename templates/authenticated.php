@@ -1,11 +1,9 @@
-this is an authenticated page.
-
-<div>
-  you are connected as <strong><?= h($p['profile']['username']);?></strong>
-</div>
+<h2>
+  Welcome <strong><?= h($p['profile']['username']);?></strong>
+</h2>
 <div>
   <p>
-    your things:
+    Things you've Flattr'd:
   </p>
   <?php foreach($p['things'] as $thing) { ?>
     <?=h($thing['url']);?></br>
@@ -13,7 +11,7 @@ this is an authenticated page.
 </div>
 
 <div>
-  <h3>Phones:</h3>
+  <h3>Phones connected to your Flattr account:</h3>
   <?php if (count($p['phones']) == 0): ?>
   <p>You've not connected a phone number to your Flattr account yet. Want to now?</p>
   <?php else: ?>
