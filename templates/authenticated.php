@@ -28,6 +28,7 @@
     <header>Connect a phone number with your <strong><?= h($p['profile']['username']);?></strong> Flattr account</header>
     <input name="phone" />
     <button type="submit">Connect</button>
+    <div>Be sure to include your country code when submitting your phone number!</div>
   </form>
 </div>
 

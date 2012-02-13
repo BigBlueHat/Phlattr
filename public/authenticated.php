@@ -47,14 +47,16 @@ function on_post($params) {
   $sag = $params['sag'];
   $tropo_token = require_once __DIR__ . '/../tropo_token.php';
 
+  $phone = str_replace(array('+', '-', '.', ' '), '', $params['phone']);
+
   // get the list of phones
   $doc = $sag->get($_SESSION['flattr_username'])->body;
   // add the new submitted phone to the list
-  $doc->phones->$params['phone'] =  array('confirmed' => false);
+  $doc->phones->$phone =  array('confirmed' => false);
   // save the updated doc
   if ($sag->put($doc->_id, $doc)->body->ok) {
     // have Tropo verify the phone is real; see phlattr_tropo_endpoint.php
-    file_get_contents("http://api.tropo.com/1.0/sessions?action=create&token={$tropo_token}&u={$_SESSION['flattr_username']}&p={$params['phone']}");
+    file_get_contents("http://api.tropo.com/1.0/sessions?action=create&token={$tropo_token}&u={$_SESSION['flattr_username']}&p={$phone}");
   }
   // load the GET resource
   redirect('authenticated.php');
