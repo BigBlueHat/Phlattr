@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/../bootstrap.php';
 require_once __DIR__ . '/../sag/Sag.php';
-$tropo_token = require_once __DIR__ . '/../tropo_token.php';
 
 function on_before($params)
 {
@@ -46,6 +45,7 @@ function on_get($params)
 
 function on_post($params) {
   $sag = $params['sag'];
+  $tropo_token = require_once __DIR__ . '/../tropo_token.php';
 
   // get the list of phones
   $doc = $sag->get($_SESSION['flattr_username'])->body;
