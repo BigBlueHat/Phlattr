@@ -1,16 +1,16 @@
 <h2>
   Welcome <strong><?= h($p['profile']['username']);?></strong>
 </h2>
-<div>
-  <p>
-    Things you've Flattr'd:
-  </p>
+<div style="border-top:1px solid #aaa">
+  <h3>
+    Your Things:
+  </h3>
   <?php foreach($p['things'] as $thing) { ?>
     <?=h($thing['url']);?></br>
   <?php } ?>
 </div>
 
-<div>
+<div style="border-top:1px solid #aaa;margin-top:15px">
   <h3>Phones connected to your Flattr account:</h3>
   <?php if (count($p['phones']) == 0): ?>
   <p>You've not connected a phone number to your Flattr account yet. Want to now?</p>
