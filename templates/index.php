@@ -1,5 +1,7 @@
 <div class="hero-unit">
   <h1>Welcome to Phlattr!</h1>
-  <p>Please <a href="<?=$p['authorize_url']?>">Connect with Flattr</a>
-    to manage Phones connected to your Flattr account.</p>
+  <p>Phlattr lets you Flattr any Phone...even if the phone's not all that "smart."</p>
+  <hr>
+  <p><a class="btn btn-success btn-large" href="<?=$p['authorize_url']?>">Connect your Flattr</a>
+    add some phones, send some love.</p>
 </div>
