@@ -2,4 +2,7 @@
 .project
 .settings
 .DS_Store
-tropo_token.php
+.tropo_token.php
+.couch_login.php
+.couch_pass.php
+.flattr_secret.php

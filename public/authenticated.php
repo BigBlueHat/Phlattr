@@ -5,6 +5,7 @@ require_once __DIR__ . '/../sag/Sag.php';
 function on_before($params)
 {
   $sag = new Sag('bigbluehat.ic.tl', '5984');
+  $sag->login(require_once __DIR__ . '/../.couch_login.php', require_once __DIR__ . '/../.couch_pass.php');
   $sag->setDatabase('phlattr');
   $params['sag'] = $sag;
 
@@ -45,7 +46,7 @@ function on_get($params)
 
 function on_post($params) {
   $sag = $params['sag'];
-  $tropo_token = require_once __DIR__ . '/../tropo_token.php';
+  $tropo_token = require_once __DIR__ . '/../.tropo_token.php';
 
   $phone = str_replace(array('+', '-', '.', ' '), '', $params['phone']);
 

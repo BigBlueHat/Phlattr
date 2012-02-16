@@ -3,8 +3,8 @@ class ConfigFlattr extends ConfigBase
 {
     public static function up()
     {
-        self::$CLIENT_ID = 'eAYNE5Njsye7c8wxqXrvKfozdlrn7w6bWUOrQrB9PG6SEtfVgwhQBvgFGySEUOFH';
-        self::$CLIENT_SECRET = 'zjZfBqfhXbZsu5dBrkiTGpodN6HyLc5amVgNcmVZnKhIGkaXviH2xW5aTDyuGuvS';
+        self::$CLIENT_ID = '6HwOyaYyEK9t7oBLACNCBbUQ1gpMUnhRVEwjFkHaVGtSVVtmo7PQ9Aw0GMCr0K8M';
+        self::$CLIENT_SECRET = require_once '.flattr_secret.php';
 
         self::$LOGFILE = '/tmp/flattr-client.log'; // debug log
 

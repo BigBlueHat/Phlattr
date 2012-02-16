@@ -1,6 +1,7 @@
 <?php
 if ( ! defined('PROJECT_PATH') ) die('You need to specify PROJECT_PATH');
 define('COLTRANE_PATH', dirname(__FILE__));
+session_name('phlattr');
 session_start(); // @todo make this configurable
 
 $GLOBALS['_required_files'] = array();
