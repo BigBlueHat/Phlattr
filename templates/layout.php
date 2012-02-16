@@ -24,6 +24,16 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="js/libs/modernizr-2.5.2-respond-1.1.0.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
 </head>
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -61,7 +71,14 @@
       <hr>
 
       <footer>
-        <p>&copy; BigBlueHat 2012 - Apache License 2.0 - <a href="https://github.com/BigBlueHat/Phlattr">Fork Phlattr on Github</a></p>
+        <p>
+<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://phlattr.bigbluehat.com/"></a>
+<noscript><a href="http://flattr.com/thing/508006/Phlattr" target="_blank">
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+          <span class="pull-right">
+            &copy; BigBlueHat 2012 - Apache License 2.0 - <a href="https://github.com/BigBlueHat/Phlattr">Fork Phlattr on Github</a>
+          </span>
+        </p>
       </footer>
 
     </div> <!-- /container -->
