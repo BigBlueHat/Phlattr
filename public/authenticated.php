@@ -37,7 +37,7 @@ function on_get($params)
   $vars = array(
     'profile' => $params['client']->getParsed('/user'),
     'things'  => $params['client']->getParsed('/user/things'),
-    'title'   => 'signed in!',
+    'title'   => 'Add a Phone Number',
     'phones'  => $phones
   );
 

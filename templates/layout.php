@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title><?=h($p['title'])?></title>
+	<title>Phlatter -=- <?=h($p['title'])?></title>
 	<meta name="description" content="Phlattr lets you Flattr Phone numbers!">
 	<meta name="author" content="BigBlueHat - http://bigbluehat.com/">
 
@@ -31,19 +31,25 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <!-- <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>-->
-          <a class="brand" href="#"><?=h($p['title'])?></a>
-          <!-- <div class="nav-collapse">
+          </a>
+          <a class="brand" href="#">Phlattr</a>
+          <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="#">Add Phones</a></li>
             </ul>
-          </div>--><!--/.nav-collapse -->
+            <ul class="nav">
+              <li>
+                <a href="/logout.php">
+                  <i class="icon-off icon-white"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
