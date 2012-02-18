@@ -1,18 +1,20 @@
 
 
 /* ===== Primary Styles ========================================================
-   Author:
+   Author: BigBlueHat
    ========================================================================== */
 
+.btn-success {
+background: #c6fc80; /* Old browsers */
+background: -moz-linear-gradient(top, #c6fc80 0%, #7ea452 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c6fc80), color-stop(100%,#7ea452)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #c6fc80 0%,#7ea452 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #c6fc80 0%,#7ea452 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #c6fc80 0%,#7ea452 100%); /* IE10+ */
+background: linear-gradient(top, #c6fc80 0%,#7ea452 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6fc80', endColorstr='#7ea452',GradientType=0 ); /* IE6-9 */
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.btn-success:hover{
+background: #7EA452
+}
