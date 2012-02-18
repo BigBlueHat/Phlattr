@@ -4,6 +4,12 @@
    Author: BigBlueHat
    ========================================================================== */
 
+.hero-unit {
+  border:1px solid #ccc;
+}
+.hero-unit h1 {
+  color: #7EA452;
+}
 .btn-success {
 background: #c6fc80; /* Old browsers */
 background: -moz-linear-gradient(top, #c6fc80 0%, #7ea452 100%); /* FF3.6+ */

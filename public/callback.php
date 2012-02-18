@@ -18,7 +18,7 @@ function on_before( $params )
 
   if ( ! empty($_SESSION['access_token']) && ($user = $client->getParsed('/user'))) {
     $_SESSION['flattr_username'] = $user['username'];
-    flash('successfully authenticated as '.$user['username'], 'notice');
+    flash('You\'re authenticated as '.$user['username'], 'alert');
     redirect('/authenticated.php');
   } else {
     flash('failed to get an access token','alert');

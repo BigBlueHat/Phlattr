@@ -38,7 +38,7 @@
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-    <div class="navbar navbar-fixed-top">
+<!--    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -59,10 +59,11 @@
                 </a>
               </li>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+          </div>--><!--/.nav-collapse -->
+<!--        </div>
       </div>
     </div>
+-->
 
     <div class="container">
       <?=flasher()?>

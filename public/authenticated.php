@@ -11,7 +11,7 @@ function on_before($params)
 
   if (empty($_SESSION['flattr_username']))
   {
-    flash('You are not authenticated, please connect with flattr.','alert');
+    flash('You are not authenticated, please connect with Flattr.','alert');
     redirect('/');
   }
   $params['client'] = new OAuth2Client(ConfigFlattr::all(array('access_token' => $_SESSION['access_token'])));
