@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Phlatter -=- <?=h($p['title'])?></title>
+	<title>Phlattr -=- <?=h($p['title'])?></title>
 	<meta name="description" content="Phlattr lets you Flattr Phone numbers!">
 	<meta name="author" content="BigBlueHat - http://bigbluehat.com/">
 
