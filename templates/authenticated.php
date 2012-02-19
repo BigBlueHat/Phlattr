@@ -38,7 +38,9 @@
     <ul>
     <?php foreach($p['phlattry'] as $phlattry): ?>
       <li<?php echo $phlattry->value->confirmed == null ? ' class="unconfirmed"' : ''; ?>>
-        <?= h($phlattry->value->user->number); ?> Flattred <?= h($phlattry->value->wants_to_phlattr->number); ?><?php echo $phlattry->value->confirmed == null ? ' (pending)' : ''; ?>
+        <?= h($phlattry->value->user->id); ?> via <?= h($phlattry->value->user->number); ?>
+        <strong>flattred</strong>
+        <?= h($phlattry->value->wants_to_phlattr->id); ?> at <?= h($phlattry->value->wants_to_phlattr->number); ?> <?php echo $phlattry->value->confirmed == null ? ' (in progress)' : ''; ?>
       </li>
     <?php endforeach; ?>
     </ul>
