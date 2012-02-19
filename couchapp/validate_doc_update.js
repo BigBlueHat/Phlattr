@@ -2,8 +2,18 @@ function (newDoc, oldDoc, userCtx) {
   if (!user_is('phlattr')) {
     throw({unauthorized: "Sorry, only phlattr members can update this db."});
   }
-  required('phones', 'Sorry, we only like phone documents around here.');
-  
+
+  // allow deletes
+  if (!newDoc._deleted) {
+    // this is a phlattr-y document
+    if (newDoc.user && newDoc.wants_to_phlattr) {
+      // carry on
+    } else if (newDoc.user && !newDoc.wants_to_phlattr) {
+      required('wants_to_phlattr', 'Sorry, we need to know who you want to phlattr.');
+    } else {
+      required('phones', 'Sorry, we only like phone documents around here.');
+    }
+  }
 
   function required(field, message /* optional */) {
     message = message || "Document must have a " + field;
