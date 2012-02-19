@@ -30,4 +30,18 @@
     </fieldset>
   </form>
   </div>
+  <div class="span12">
+    <?php if (count($p['phones']) == 0): ?>
+    <p>No Flattrs sent yet.</p>
+    <?php else: ?>
+    <p>Flattrs done or en route initiated via Phlattr:</p>
+    <ul>
+    <?php foreach($p['phlattry'] as $phlattry): ?>
+      <li<?php echo $phlattry->value->confirmed == null ? ' class="unconfirmed"' : ''; ?>>
+        <?= h($phlattry->value->user->number); ?> Flattred <?= h($phlattry->value->wants_to_phlattr->number); ?><?php echo $phlattry->value->confirmed == null ? ' (pending)' : ''; ?>
+      </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+  </div>
 </section>

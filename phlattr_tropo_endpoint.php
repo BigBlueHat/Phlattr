@@ -18,9 +18,11 @@ $couch->pass = 'REPLACE ME';
 
 // if the user is TXTing us first
 if ($currentCall->initialText) {
-  // let's log what they sent
+  // let's log what they sent and from where
   _log("*** User sent: " . $currentCall->initialText . " ***");
-  // and this empty ask() will catch that text, and fill the $result.
+  _log("*** CallerID: " . $currentCall->callerID . " ***");
+
+  // this empty ask() will catch that text, and fill the $result.
   $result = ask("", array("choices" => "[ANY]"));
 
   $number = preg_replace('/[A-Za-z\s\W]+/', '', $result->value);
@@ -30,18 +32,28 @@ if ($currentCall->initialText) {
         number is the only number in your text.', array('choices' => '[ANY]'));
   } else {
     // looks like we've got a phone number, so look it up!
-    // using ?key= on this view should only return a single entry
-    $view_results = $couch->send('GET', '/phlattr/_design/phlattr/_view/phones_by_number?key="' . $number . '"');
-    // once we have it, let's build the Flattr URL
-    $url = 'http://flattr.com/profile/' . $view_results['rows'][0]['id'];
-    // and lookup it's "Thing ID"
-    // GET https://api.flattr.com/rest/v2/things/lookup/?url=:url
+    function getPhlattrUser($number) {
+      // using ?key= on this view should only return a single entry
+      $view_results = $couch->send('GET', '/phlattr/_design/phlattr/_view/phones_by_number?key="' . $number . '"');
 
-    // TODO: consider moving this section back to the main server, and having
-    // Tropo merely initiate it...so we do less on this side, and more on
-    // on the side that's already got OAuth tokens, etc...
+      // if the phone exists in Phlattr,
+      if (count($view_results['rows']) > 0) {
+        // return the doc_id / Flattr user ID
+        return $view_results['rows'][0]['id'];
+      } else {
+        return false;
+      }
+    }
 
-    // POST https://api.flattr.com/rest/v2/things/:id/flattr
+    // if both phones exist
+    if ($caller = getPhlattrUser($currentCall->callerID) && $recipient = getPhlattrUser($number)) {
+      // then lets create a "ledger" entry for this phlattr
+      $phlattr = array('user' => array('id' => $caller, 'number' => $currentCall->callerID),
+                       'wants_to_phlattr' => array('id' => $recipient, 'number' => $number),
+                       'requested' => time(),
+                       'unconfirmed' => null);
+      $couch->send('POST', '/phlattr/', json_encode($phlattr));
+    }
   }
 } else {
   // if they're not texting us first, then we're sending them the a confirmation request.

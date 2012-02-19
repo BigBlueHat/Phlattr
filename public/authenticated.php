@@ -24,19 +24,27 @@ function on_get($params)
 
   try {
     // get list of existing registered phones and display them
-    $phones = $sag->get($_SESSION['flattr_username'])->body->phones;
+    $doc = $sag->get($_SESSION['flattr_username'])->body;
+    $phones = $doc->phones;
+
+    // update the bearer token in the DB, so we can use it later to Flattr
+    $doc->access_token = $_SESSION['access_token'];
+    $sag->put($_SESSION['flattr_username'], $doc);
+
   } catch(SagCouchException $e) {
     // if it 404's, create it so we'll have it later
-    if($e->getCode() == "404") {
+    if ($e->getCode() == "404") {
       $doc = array('_id' => $_SESSION['flattr_username'],
-                   'phones' => $phones = (object) array());
+                   'phones' => $phones = (object) array(),
+                   // add the bearer token in the DB, so we can use it later to Flattr
+                   'access_token' => $_SESSION['access_token']);
       $sag->put($_SESSION['flattr_username'], $doc);
     }
   }
 
   $vars = array(
     'profile' => $params['client']->getParsed('/user'),
-    'things'  => $params['client']->getParsed('/user/things'),
+    'phlattry'  => $sag->get('_design/phlattr/_view/phlattry_by_user?startkey=["' . $_SESSION['flattr_username'] . '"]&endkey=["' . $_SESSION['flattr_username'] . '",{},{}]')->body->rows,
     'title'   => 'Add a Phone Number',
     'phones'  => $phones
   );
