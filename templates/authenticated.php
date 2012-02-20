@@ -1,6 +1,6 @@
 <section class="row">
   <div class="span10">
-  <h3><?= h($p['profile']['username']);?>'s Phones:</h3>
+  <h2><?= h($p['profile']['username']);?>'s Phones:</h2>
   <?php if (count($p['phones']) == 0): ?>
   <p>You've not connected a phone number to your Flattr account yet. Want to now?</p>
   <?php else: ?>
@@ -30,9 +30,17 @@
     </fieldset>
   </form>
   </div>
+
   <div class="span12">
-    <?php if (count($p['phones']) == 0): ?>
-    <p>No Flattrs sent yet.</p>
+   <h2>Once you've confirmed your phone above...</h2>
+   <p>The next step is to TXT another Flattr users phone number to the number you received the confirmation TXT from.</p>
+   <p>After doing that, we'll display how things are going below.</p>
+  </div>
+
+  <div class="span12">
+    <h2>Flattrs so far...</h2>
+    <?php if (count($p['phlattry']) == 0): ?>
+    <p>No Flattrs sent yet. We'll show you how things are going here, once you've sent some texts.</p>
     <?php else: ?>
     <p>Flattrs done or en route initiated via Phlattr:</p>
     <ul>
