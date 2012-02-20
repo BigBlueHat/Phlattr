@@ -37,7 +37,7 @@ function on_get($params)
 
 
 function flattr($row, $sag) {
-  $phlattry_key = $row->key;
+  $phlattry_doc_id = $row->id;
   $phlattry_doc = $row->value;
   $phlattry_user = $row->doc;
 
@@ -47,9 +47,11 @@ function flattr($row, $sag) {
   header('Content-Type: text/plain');
   $flattrd = $client->post('/things/' . $thing_id . '/flattr', array());
   // store this in a log section on the phlattry doc
-  $sag->put('/_design/phlattr/_update/log/' . $phlattry_key, $flattrd);
+  $sag->put('_design/phlattr/_update/log/' . $phlattry_doc_id, $flattrd);
   // if it was a success, then also update the 'confirmed' key w/current time
-  $sag->put('/_design/phlattr/_update/confirm/' . $phlattry_key, array());
+  if ($flattrd->responseCode == 200) {
+    $sag->put('_design/phlattr/_update/confirm/' . $phlattry_doc_id, array());
+  }
   // TODO: let originating user know via a TXT that it all worked! :D
 }
 
