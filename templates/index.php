@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div class="hero-unit well">
   <h1>Welcome to Phlattr!</h1>
   <p>Phlattr lets you Flattr any Phone...even if the phone's not all that "smart."</p>
   <hr>
