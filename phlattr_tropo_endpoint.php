@@ -53,6 +53,8 @@ if ($currentCall->initialText) {
                        'requested' => time(),
                        'unconfirmed' => null);
       $couch->send('POST', '/phlattr/', json_encode($phlattr));
+      // and trigger processing of pending phlattry
+      _log('process HTTP response: ' . file_get_contents('http://phlattr.bigbluehat.com/process.php'));
     }
   }
 } else {
