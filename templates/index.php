@@ -10,7 +10,7 @@
     <h2>Built for...<a href="http://flattr.com/"><img src="https://flattr.com/_static/styles/img/aut11/logo.png" /></a></h2>
     <p>Specifically for their <a href="http://blog.flattr.net/2012/01/developer-challenge-january-edition-its-a-go/">January 2012 Dev Contest</a>.</p>
     <p>This is all still a work in progress, but it's been a blast to build and work with such great technologies, ideas, and people.</p>
-    <p><strong>Also, please note:</strong><br />International SMS support is still forthcoming.</p>
+    <p><strong>Also, please note:</strong><br />International SMS support <strike>is still forthcoming</strike> has some shortcomings due to limitations with the US "backend" Tropo uses for relay. <a href="http://status.tropo.com/post/8829530632/international-sms-service-changes">Read more about it at Tropo's status blog</a>.</p>
     <p><strong>Another, please note:</strong><br />Please consider this <em>super</em> Alpha-quality software. It's being brought to you "as is" until further notice. It should work, but...it's pretty new here. Thanks.</p>
   </div>
   <div class="span4">
@@ -26,6 +26,6 @@
   </div>
   <div class="span4">
     <h2>Built by...</h2>
-    <p><img src="https://si0.twimg.com/profile_background_images/2907368/logo_square.png" width="200" height="200" /></p>
+    <p><a href="http://bigbluehat.com/"><img src="https://si0.twimg.com/profile_background_images/2907368/logo_square.png" width="200" height="200" /></a></p>
   </div>
 </div>
