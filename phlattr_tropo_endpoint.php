@@ -13,8 +13,8 @@ _log('Phone: ' . $p);
 // Setup the Couch connection
 $couch = new CouchSimple(array('host' => 'bigbluehat.ic.tl', 'port' => 5984));
 
-$couch->user = 'REPLACE ME';
-$couch->pass = 'REPLACE ME';
+$couch->user = 'phlattr';
+$couch->pass = 'Fl@ttrPhl@ttrs';
 
 // if the user is TXTing us first
 if ($currentCall->initialText) {
@@ -32,9 +32,10 @@ if ($currentCall->initialText) {
         number is the only number in your text.', array('choices' => '[ANY]'));
   } else {
     // looks like we've got a phone number, so look it up!
-    function getPhlattrUser($number) {
+    function getPhlattrUser($number, $couch) {
       // using ?key= on this view should only return a single entry
       $view_results = $couch->send('GET', '/phlattr/_design/phlattr/_view/phones_by_number?key="' . $number . '"');
+      _log('phones_by_number results: ' . print_r($view_results, true));
 
       // if the phone exists in Phlattr,
       if (count($view_results['rows']) > 0) {
@@ -46,13 +47,18 @@ if ($currentCall->initialText) {
     }
 
     // if both phones exist
-    if ($caller = getPhlattrUser($currentCall->callerID) && $recipient = getPhlattrUser($number)) {
+    if (($caller = getPhlattrUser($currentCall->callerID, $couch)) && ($recipient = getPhlattrUser($number, $couch))) {
+      _log('phlattr caller: ' . $caller);
+      _log('phlattr recipient: ' . $recipient);
       // then lets create a "ledger" entry for this phlattr
       $phlattr = array('user' => array('id' => $caller, 'number' => $currentCall->callerID),
                        'wants_to_phlattr' => array('id' => $recipient, 'number' => $number),
                        'requested' => time(),
                        'unconfirmed' => null);
-      $couch->send('POST', '/phlattr/', json_encode($phlattr));
+      $phlattry_result = $couch->send('POST', '/phlattr/', json_encode($phlattr));
+      _log('phlattry_result: ' . print_r($phlattry_result, true));
+      // and trigger processing of pending phlattry
+      _log('process HTTP response: ' . file_get_contents('http://phlattr.bigbluehat.com/process.php'));
     }
   }
 } else {
